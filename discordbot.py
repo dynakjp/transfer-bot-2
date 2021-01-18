@@ -36,7 +36,7 @@ async def on_message(message):
         while copy_message.content != '/fin':
             copy_message=await client.wait_for("message",check=check)
             if copy_message.channel==message.channel:
-                await channel.send(">{0}\n[**{1}**]__***{2}***__\n{3}".format(copy_message.id,copy_message.channel.name,copy_message.author.name,copy_message.content))
+                await channel.send("[**{1}**]> __***{2}***__\n{3}".format(copy_message.channel.name,copy_message.author.name,copy_message.content))
         await message.channel.send('終了しました')
         await channel.send('終了しました')
 
