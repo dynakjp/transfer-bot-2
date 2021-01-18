@@ -24,8 +24,8 @@ async def on_message(message):
     # メッセージ送信者がBotだった場合は無視する
     if message.author.bot:
         return
-
-    # 「/neko」と発言したら「にゃーん」が返る処理
+    
+    
     if message.content == '/here to':
         await message.channel.send('ここが送信元!送信先を教えてね！')
         wait_message=await client.wait_for("message",check=check)
@@ -36,9 +36,10 @@ async def on_message(message):
         while copy_message.content != '/fin':
             copy_message=await client.wait_for("message",check=check)
             if copy_message.channel==message.channel:
-                await channel.send("[**{1}**]__***{2}***__\n{3}".format(copy_message.channel.name,copy_message.author.name,copy_message.content))
+                await channel.send("[{0}]{1}\n{2}".format(copy_message.channel.name,copy_message.author.name,copy_message.content))
         await message.channel.send('終了しました')
         await channel.send('終了しました')
+
 
 # Botの起動とDiscordサーバーへの接続
 client.run(TOKEN)
