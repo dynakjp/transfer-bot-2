@@ -31,18 +31,18 @@ async def on_message(message):
     if message.author.bot:
         return
    
-    if message.content.startswith('!send'):
+    if message.content.startswith('/send'):
         send_message=message.content.split(" ")
         channel = discord.utils.get(message.guild.text_channels, name=send_message[1])
         await channel.send("[{0}]\n{1}".format(message.author.name,send_message[2]))
     
-    elif message.content.startswith('!to'):
+    elif message.content.startswith('/to'):
         send_message=message.content.split(" ")
         channel = discord.utils.get(message.guild.text_channels, name=send_message[1])
         await message.channel.send('ここが送信元!(送信先:{0})'.format(send_message[1]))
         await channel.send('送信先として設定(送信元:{0})'.format(message.channel.name))
         copy_message=message
-        while copy_message.content != '!fin':
+        while copy_message.content != '/fin':
             copy_message=await client.wait_for("message",check=check)
             if copy_message.channel==message.channel:
                 await channel.send("[{0}]{1}\n{2}".format(copy_message.channel.name,copy_message.author.name,copy_message.content))
